@@ -5,7 +5,8 @@ Implemented thus far:
 
 1) ARX model
   - Batch Least Squares
-  - Ridge regression
   - Gradient Descent
+  - Ridge regression
+  - LASSO Coordinate Descent
   
 2) NARX model
