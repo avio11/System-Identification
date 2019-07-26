@@ -2,14 +2,14 @@
 % University of Brasilia
 %
 % LASSO for nonlinear NARX models
-function [ theta ] = LASSO( y, u, ny, nu )
+function [ theta ] = LASSO( y, u, ny, nu, nl )
     % Parameters of the LASSO
         theta = zeros(ny+nu+1,1);     % Coeficients of the model
         lambda = 2;
         iterations = 100;
         
     % Generate regressor matrix P
-        P = build_NARX_regressor(y,u,ny,nu);
+        P = build_NARX_regressor(y,u,ny,nu,nl);
         
     % Train ARX model via LASSO coordinate descent
     for it = 1:iterations

@@ -2,9 +2,9 @@
 % University of Brasilia
 %
 % Gradient Descent for nonlinear NARX models
-function [ theta ] = GDS( y, u, ny, nu )
+function [ theta ] = GDS( y, u, ny, nu, nl )
     % Build regressor matrix P
-    P = build_ARX_regressor( y, u, ny, nu );
+    P = build_NARX_regressor( y, u, ny, nu, nl );
     
     % Gradient Descent parameters
     alpha = 0.1;
