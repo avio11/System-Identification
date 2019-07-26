@@ -31,8 +31,8 @@ theta_Ridge = Ridge( y, u, ny, nu );
 % Batch Least Squares (Working)
 theta_BLS = BLS( y, u, ny, nu );
 
-% % Gradient Descent (Upcoming work)
-% theta_GDS = GDS( y, u, ny, nu );
-% 
+% Gradient Descent (Upcoming work)
+theta_GDS = GDS( y, u, ny, nu );
+
 % % Elastic Net (Upcoming work)
 % theta_Elastic = Elastic_net(y, u, ny, nu );
