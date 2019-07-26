@@ -1,9 +1,12 @@
+% Author: Jose Reinaldo da C.S.A.V.S Neto
+% University of Brasilia
+%
 % LASSO for linear ARX models
 function [ theta ] = LASSO( y, u, ny, nu )
     % Parameters of the LASSO
         theta = zeros(ny+nu+1,1);     % Coeficients of the model
-        lambda = 1;
-        iterations = 5;
+        lambda = 2;
+        iterations = 100;
         
     % Generate regressor matrix P
         P = build_ARX_regressor(y,u,ny,nu);
@@ -18,7 +21,7 @@ function [ theta ] = LASSO( y, u, ny, nu )
             z(j) = P(:,j)'*P(:,j);
 
             % STEP 3 - Update theta(j)
-            theta(j) = wthresh(rho(j),'s', lambda);
+            theta(j) = wthresh(rho(j),'s', lambda)/z(j);
 %             fprintf('theta(%d) = %f\n', j, theta(j));    
         end
     end
