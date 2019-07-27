@@ -10,6 +10,8 @@ Implemented thus far:
   - LASSO Coordinate Descent
   
 2) NARX model
+  - Batch Least Squares
+  - Ridge Regression
 
 3) Neural Networks
   - Multilayer Perceptron Neural Network (Error Backpropagation)
