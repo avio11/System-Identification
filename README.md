@@ -1,5 +1,5 @@
 # System-Identification
-Machine learning techniques for ARX and NARX system identification.
+Machine learning techniques for linear and nonlinear system identification.
 
 Implemented thus far:
 
@@ -8,6 +8,8 @@ Implemented thus far:
   - Gradient Descent
   - Ridge regression
   - LASSO Coordinate Descent
-  - Multilayer Perceptron Neural Network (Error Backpropagation)
   
 2) NARX model
+
+3) Neural Networks
+  - Multilayer Perceptron Neural Network (Error Backpropagation)
