@@ -39,11 +39,12 @@ theta_GDS = GDS( y, u, ny, nu );
 % theta_Elastic = Elastic_net(y, u, ny, nu );
 
 % Multilayer Perceptron Neural Network
-q_neuron = 4; % Number of neurons in hidden layer
-[net, y_net] = MLP( y/10, u/10, ny, nu, q_neuron);
+q_neuron = 8; % Number of neurons in hidden layer
+m = max(abs(y));
+[net, y_net] = MLP( y/m, u/m, ny, nu, q_neuron);
 plot(y);
 hold on
-plot(y_net*10);
+plot(y_net*m);
 title('MLP system identification');
 legend('Real system output', 'Neural net output');
 hold off

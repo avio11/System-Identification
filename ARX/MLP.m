@@ -24,7 +24,10 @@ function [ net, y_net ] = MLP( y, u, ny, nu, q_neuron )
         O = H'*net.lw + net.b{2};           % output of neuron on output layer
         E = (O - y(i+max(ny,nu)));         % Error between neural network model and real system
         delta_lw = E*H;
-        delta_iw = E*net.lw.*H.*(1-H).*I(i,:)';
+        size(net.lw)
+        size(H)
+        size(I(i,:))
+        delta_iw = E*net.lw.*H.*(1-H)*I(i,:);
         delta_b{2} = E;
         delta_b{1} = E*net.lw.*H.*(1-H);
         
