@@ -12,7 +12,7 @@ u = normrnd(0,1,[1,N]);
 e = normrnd(mu,sigma,[1,N]);
 y(1:2) = 0;
 for i=3:N
-    y(i) = 0.5*y(i-1) + 0.3*y(i-2) + 0.1*y(i-1)*y(i-2) + 0.7*u(i-1) + 0.9*u(i-1)*u(i-2) + e(i);
+    y(i) = 0.5 * y(i-1) + u(i-2) + 0.1 * (u(i-2)^2) + y(i-1)*u(i-1) + e(i);
 end
 u = u';
 y = y';
@@ -21,27 +21,28 @@ y = y';
 ny = 2;
 nu = 2;
 nl = 2;
-
 clc
+M = factorial(ny+nu+nl)/(factorial(ny+nu)*factorial(nl))-1; % Number of NARX terms excluding trivial all coefficients are zeroes case
+fprintf('There are %d terms in the full NARX model', M+1);
 
-% % LASSO training (Upcoming work)
-% theta_LASSO = LASSO( y, u, ny, nu, nl );
-% 
-% % Ridge Regression (Upcoming work)
-% theta_Ridge = Ridge( y, u, ny, nu, nl );
 
-% Batch Least Squares (Upcoming work)
-theta_BLS = BLS( y, u, ny, nu, nl );
+% Batch Least Squares (Working)
+[theta_BLS, full_model] = BLS( y, u, ny, nu, nl );
+print_term_coeff(full_model, theta_BLS, 'Batch Least Squares', ny, nu);
 
 % % Gradient Descent (Upcoming work)
-% theta_GDS = GDS( y, u, ny, nu, nl );
+% [theta_GDS, full_model] = GDS( y, u, ny, nu, nl );
+% print_term_coeff(full_model, theta_GDS, 'Gradient Descent', ny, nu);
+
+% LASSO training (Upcoming work)
+[theta_LASSO, full_model] = LASSO( y, u, ny, nu, nl );
+print_term_coeff(full_model, theta_LASSO, 'LASSO', ny, nu);
+
+% Ridge Regression (Working)
+[theta_Ridge, full_model] = Ridge( y, u, ny, nu, nl );
+print_term_coeff(full_model, theta_Ridge, 'Ridge Regression', ny, nu);
+
 
 % % Elastic Net (Upcoming work)
 % theta_Elastic = Elastic_net(y, u, ny, nu );
 
-% Print trained coefficients
-% fprintf('Real system:\t y(k) = 0.0000 + 0.5000y(k-1) + 0.3000y(k-2) + 0.7000u(k-1) + 0.9000u(k-2)\n');
-% fprintf('BLS model:\t\t y(k) = %.4f + %.4fy(k-1) + %.4fy(k-2) + %.4fu(k-1) + %.4fu(k-2)\n', theta_BLS(1), theta_BLS(2), theta_BLS(3), theta_BLS(4), theta_BLS(5));
-% fprintf('GDS model:\t\t y(k) = %.4f + %.4fy(k-1) + %.4fy(k-2) + %.4fu(k-1) + %.4fu(k-2)\n', theta_GDS(1), theta_GDS(2), theta_GDS(3), theta_GDS(4), theta_GDS(5));
-% fprintf('LASSO model:\t y(k) = %.4f + %.4fy(k-1) + %.4fy(k-2) + %.4fu(k-1) + %.4fu(k-2)\n', theta_LASSO(1), theta_LASSO(2), theta_LASSO(3), theta_LASSO(4), theta_LASSO(5));
-% fprintf('Ridge model:\t y(k) = %.4f + %.4fy(k-1) + %.4fy(k-2) + %.4fu(k-1) + %.4fu(k-2)\n', theta_Ridge(1), theta_Ridge(2), theta_Ridge(3), theta_Ridge(4), theta_Ridge(5));
