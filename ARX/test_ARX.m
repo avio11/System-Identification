@@ -38,6 +38,16 @@ theta_GDS = GDS( y, u, ny, nu );
 % % Elastic Net (Upcoming work)
 % theta_Elastic = Elastic_net(y, u, ny, nu );
 
+% Multilayer Perceptron Neural Network
+q_neuron = 4; % Number of neurons in hidden layer
+[net, y_net] = MLP( y/10, u/10, ny, nu, q_neuron);
+plot(y);
+hold on
+plot(y_net*10);
+title('MLP system identification');
+legend('Real system output', 'Neural net output');
+hold off
+
 % Print trained coefficients
 fprintf('Real system:\t y(k) = 0.0000 + 0.5000y(k-1) + 0.3000y(k-2) + 0.7000u(k-1) + 0.9000u(k-2)\n');
 fprintf('BLS model:\t\t y(k) = %.4f + %.4fy(k-1) + %.4fy(k-2) + %.4fu(k-1) + %.4fu(k-2)\n', theta_BLS(1), theta_BLS(2), theta_BLS(3), theta_BLS(4), theta_BLS(5));
