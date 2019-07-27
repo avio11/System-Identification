@@ -8,5 +8,6 @@ Implemented thus far:
   - Gradient Descent
   - Ridge regression
   - LASSO Coordinate Descent
+  - Multilayer Perceptron Neural Network
   
 2) NARX model
