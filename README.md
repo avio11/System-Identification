@@ -14,4 +14,4 @@ Implemented thus far:
   - Ridge Regression
 
 3) Neural Networks
-  - Multilayer Perceptron Neural Network (Error Backpropagation)
+  - Multilayer Perceptron Neural Network (Training implemented by Error Backpropagation)
