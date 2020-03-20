@@ -1,7 +1,7 @@
 % Author: Jose Reinaldo da C.S.A.V.S Neto
 % University of Brasilia
 %
-% LASSO for linear ARX models
+% LASSO for nonlinear NARX models (not implemented yet)
 function [ theta, full_model ] = LASSO( y, u, ny, nu, nl )
     % Parameters of the LASSO
         theta = zeros(ny+nu+1,1);     % Coeficients of the model
